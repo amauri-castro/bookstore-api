@@ -30,6 +30,9 @@ public class Book implements Serializable {
                 inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
 
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+    private Review review;
+
     public UUID getId() {
         return id;
     }
@@ -60,5 +63,13 @@ public class Book implements Serializable {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
     }
 }
